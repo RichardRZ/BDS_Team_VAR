@@ -26,10 +26,29 @@ def cleanData():
 print "Loading dataset"
 df = loadData()
 
-print "Saving dataset as pickle"
-saveData(df)
+#print "Saving dataset as pickle"
+#saveData(df)
 
-print df
+del df['user_id']
+del df['osTypeName']
+del df['daysToCheckin']
+del df['p_TotalPrice']
+
+#df['day'] = pd.to_datetime('day')
+#
+##df.add('weekday')
+#print df['day'].weekday()
+
+#print df
+
+#print df
+#print df.dropna()
+
+#u = pd.to_datetime('1899-12-30')
+#print u.weekday()
+#print df.min(axis=1)
+#print df["daysToCheckin"].dropna()
+#print df["p_TotalPrice"].dropna()
 
 #print "2) Performing logistic regression on training set:"
 #logisticRegression(dataFinal)
