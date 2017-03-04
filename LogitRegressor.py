@@ -34,23 +34,16 @@ del df['osTypeName']
 del df['daysToCheckin']
 del df['p_TotalPrice']
 
-#df['day'] = pd.to_datetime('day')
-#
-##df.add('weekday')
-#print df['day'].weekday()
+df['day'] = pd.to_datetime(df['day'])
+df['weekday'] = df['day'].apply(lambda x: x.weekday())
+
+minimumDate = df['day'].min(axis=1)
+
+df['day'] = (pd.to_datetime(df['day']) - minimumDate)
+#df['day'] = df['day'].apply(lambda x: x.days)
+
+df['p_trafficChannel'] = df['p_trafficChannel'].apply(lambda x: ord(x))
+
+print df.head(3)
 
 #print df
-
-#print df
-#print df.dropna()
-
-#u = pd.to_datetime('1899-12-30')
-#print u.weekday()
-#print df.min(axis=1)
-#print df["daysToCheckin"].dropna()
-#print df["p_TotalPrice"].dropna()
-
-#print "2) Performing logistic regression on training set:"
-#logisticRegression(dataFinal)
-
-#pd.set_option('display.max_rows', None)
