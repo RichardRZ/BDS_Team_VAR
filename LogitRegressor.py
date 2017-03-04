@@ -43,17 +43,17 @@ df['p_trafficChannel'] = df['p_trafficChannel'].apply(lambda x: ord(x))
 
 del df['day']
 
+bookingPurchase = df.ix[:,11]
+del df['BookingPurchase']
+df['BookingPurchase'] = pd.Series(bookingPurchase)
+
 C = 0.2
-X = df.ix[:,0:11].as_matrix()
+X = df.ix[:,0:12].as_matrix()
 X = preprocessing.scale(X)
 print df.head(3)
 
-Y = df.ix[:,11].as_matrix()
-#classifier = LogisticRegression(C = C, penalty = 'l1')
-#classifier.fit(X, Y)
-#coef_l1 = classifier.coef_.ravel()
-#print coef_l1
-#print X
-
-#print df.ix['BookingPurchase']
-#print df.head(3)
+Y = df.ix[:,12].as_matrix()
+classifier = LogisticRegression(C = C, penalty = 'l1')
+classifier.fit(X, Y)
+coef_l1 = classifier.coef_.ravel()
+print coef_l1
